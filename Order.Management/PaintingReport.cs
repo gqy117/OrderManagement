@@ -4,9 +4,11 @@ using System.Text;
 
 namespace Order.Management
 {
+    // PaintingReport should not be the child of order. Use composition instead.
     class PaintingReport : Order
     {
         public int tableWidth = 73;
+        // Pass Order into here
         public PaintingReport(string customerName, string customerAddress, string dueDate, List<Shape> shapes)
         {
             base.CustomerName = customerName;
@@ -24,8 +26,10 @@ namespace Order.Management
         public void generateTable()
         {
             PrintLine();
+            // this line is also duplicated
             PrintRow("        ", "   Red   ", "  Blue  ", " Yellow ");
             PrintLine();
+            // these 3 lines are the same in InvoiceReport and they should have a different base class: ReportBase.cs
             PrintRow("Square", base.OrderedBlocks[0].NumberOfRedShape.ToString(), base.OrderedBlocks[0].NumberOfBlueShape.ToString(), base.OrderedBlocks[0].NumberOfYellowShape.ToString());
             PrintRow("Triangle", base.OrderedBlocks[1].NumberOfRedShape.ToString(), base.OrderedBlocks[1].NumberOfBlueShape.ToString(), base.OrderedBlocks[1].NumberOfYellowShape.ToString());
             PrintRow("Circle", base.OrderedBlocks[2].NumberOfRedShape.ToString(), base.OrderedBlocks[2].NumberOfBlueShape.ToString(), base.OrderedBlocks[2].NumberOfYellowShape.ToString());

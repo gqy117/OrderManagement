@@ -4,6 +4,8 @@ using System.Text;
 
 namespace Order.Management
 {
+    // Could consider InvoiceReport: PaintingReport
+    // If that's too tightly coupled, use composition
     class InvoiceReport : Order
     {
         public int tableWidth = 73;
@@ -51,9 +53,13 @@ namespace Order.Management
             PrintRow("Circle", base.OrderedBlocks[2].NumberOfRedShape.ToString(), base.OrderedBlocks[2].NumberOfBlueShape.ToString(), base.OrderedBlocks[2].NumberOfYellowShape.ToString());
             PrintLine();
         }
+        
+        // reuse OrderSquareDetails and OrderTriangleDetails
         public void OrderSquareDetails()
         {
-            Console.WriteLine("\nSquares 		  " + base.OrderedBlocks[0].TotalQuantityOfShape() + " @ $" + base.OrderedBlocks[0].Price + " ppi = $" + base.OrderedBlocks[0].Total());
+            // use the new approach to concatenate the string
+            // why \n
+            Console.WriteLine($"\nSquares 		  ${base.OrderedBlocks[0].TotalQuantityOfShape()} +  @ $ ${base.OrderedBlocks[0].Price} ppi = $${base.OrderedBlocks[0].Total()}");
         }
         public void OrderTriangleDetails()
         {
@@ -73,6 +79,7 @@ namespace Order.Management
             int width = (tableWidth - columns.Length) / columns.Length;
             string row = "|";
 
+            // String Builder?
             foreach (string column in columns)
             {
                 row += AlignCentre(column, width) + "|";

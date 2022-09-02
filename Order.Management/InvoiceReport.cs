@@ -22,6 +22,11 @@ namespace Order.Management
             Console.WriteLine("\nYour invoice report has been generated: ");
             Console.WriteLine(base.ToString());
             GenerateTable();
+            // technically it's perfect to do
+            /*
+             * base.GenerateReport();
+             * ...
+             */
             OrderSquareDetails();
             OrderTriangleDetails();
             OrderCircleDetails();

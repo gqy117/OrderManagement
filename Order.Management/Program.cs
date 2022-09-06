@@ -50,7 +50,9 @@ namespace Order.Management
         // Order Triangles Input
         public static Triangle OrderTrianglesInput()
         {
+            /// Console.WriteLine? Cross platform?
             Console.Write("\nPlease input the number of Red Triangles: ");
+            /// Error handling?
             int redTriangle = Convert.ToInt32(userInput());
             Console.Write("Please input the number of Blue Triangles: ");
             int blueTriangle = Convert.ToInt32(userInput());
